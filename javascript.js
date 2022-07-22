@@ -43,14 +43,14 @@ const operate = (a, operator, b) => {
 
 let numberArr = [];
 let histArray = [];
-let history = "";
+
 let display;
 let dotCounter=0;
 
 const totalDisplay = document.querySelector(".total")
 
-const historyDisplay = document.querySelector(".prev")
-historyDisplay.textContent = history;
+
+
 const one = document.querySelector("#one");
 one.addEventListener ('click', () => {
   numberArr.push(1);
@@ -137,7 +137,7 @@ plus.addEventListener ('click', () => {
   if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
     numberArr.pop();
   }
-  numberArr.push("+");
+  numberArr.push(" + ");
   totalDisplay.textContent = numberArr.join('');
   });
 
@@ -146,7 +146,7 @@ const subst = document.querySelector("#subs");
     if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
       numberArr.pop();
     }
-    numberArr.push("-");
+    numberArr.push(" - ");
     totalDisplay.textContent = numberArr.join('');
     });
 
@@ -155,20 +155,32 @@ const multi = document.querySelector("#mult");
     if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
       numberArr.pop();
     }
-    numberArr.push("x");
+    
+    numberArr.push(" x ");
     totalDisplay.textContent = numberArr.join('');
     });
 
 const division = document.querySelector("#divide");
 division.addEventListener ('click', () => {
-  console.log(numberArr[numberArr.length-1]);
+  
   if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
     numberArr.pop();
   }
-  numberArr.push("÷");
-  console.log(numberArr);
+  numberArr.push(" ÷ ");
+  
   totalDisplay.textContent = numberArr.join('');
   });
+
+const equals = document.querySelector("#equals");
+equals.addEventListener ('click', () => {
+  if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+    numberArr.pop();
+  };
+
+   
+
+});
+
 
 
 //code for equals()
