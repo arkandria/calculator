@@ -1,6 +1,7 @@
 let total = 3;
 let a;
 let b;
+let operations=[];
 
 
 const add = (a,b) => {
@@ -31,10 +32,10 @@ const operate = (a, operator, b) => {
       case "-":
         return substract(a,b);
         break;
-      case "*":
+      case "x":
         return mult(a,b);
         break;
-      case "/":
+      case "÷":
         return divide(a,b)
       break;
     }
@@ -63,43 +64,44 @@ two.addEventListener ('click', () => {
 });
 const three = document.querySelector("#three");
 three.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(3);
   totalDisplay.textContent = numberArr.join('');
 });
 const four = document.querySelector("#four");
 four.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(4);
   totalDisplay.textContent = numberArr.join('');
 });
 const five = document.querySelector("#five");
 five.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(5);
   totalDisplay.textContent = numberArr.join('');
 });
 const six = document.querySelector("#six");
 six.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(6);
   totalDisplay.textContent = numberArr.join('');
 });
 const seven = document.querySelector("#seven");
 seven.addEventListener ('click', () => {
-  numberArr.push(2);
+  numberArr.push(7);
   console.log(numberArr);
   totalDisplay.textContent = numberArr.join('');
 });
 const eight = document.querySelector("#eight");
 eight.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(8);
+  console.log(numberArr);
   totalDisplay.textContent = numberArr.join('');
 });
 const nine = document.querySelector("#nine");
 nine.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(9);
   totalDisplay.textContent = numberArr.join('');
 });
 const zero = document.querySelector("#zero");
 zero.addEventListener ('click', () => {
-  numberArr.push(1);
+  numberArr.push(0);
   totalDisplay.textContent = numberArr.join('');
 });
 const dot = document.querySelector("#dot");
@@ -117,10 +119,63 @@ c.addEventListener ('click', () => {
   totalDisplay.textContent = 0;
 });
 
-const plus = document.querySelector("#add");
-c.addEventListener ('click', () => {
-  a= parseFloat(numberArr.join('')); 
-  history = a + "+";
-  numberArr = [];
+const ac = document.querySelector("#ac");
+ac.addEventListener ('click', () => {
+  numberArr = [] ;
   totalDisplay.textContent = 0;
 });
+
+const del = document.querySelector("#del");
+del.addEventListener ('click', () => {
+  numberArr.pop();
+  totalDisplay.textContent = numberArr.join(' ');
+});
+
+const plus = document.querySelector("#add");
+plus.addEventListener ('click', () => {
+  console.log(numberArr[numberArr.length-1]);
+  if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+    numberArr.pop();
+  }
+  numberArr.push("+");
+  totalDisplay.textContent = numberArr.join('');
+  });
+
+const subst = document.querySelector("#subs");
+  subst.addEventListener ('click', () => {
+    if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+      numberArr.pop();
+    }
+    numberArr.push("-");
+    totalDisplay.textContent = numberArr.join('');
+    });
+
+const multi = document.querySelector("#mult");
+  multi.addEventListener ('click', () => {
+    if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+      numberArr.pop();
+    }
+    numberArr.push("x");
+    totalDisplay.textContent = numberArr.join('');
+    });
+
+const division = document.querySelector("#divide");
+division.addEventListener ('click', () => {
+  console.log(numberArr[numberArr.length-1]);
+  if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+    numberArr.pop();
+  }
+  numberArr.push("÷");
+  console.log(numberArr);
+  totalDisplay.textContent = numberArr.join('');
+  });
+
+
+//code for equals()
+/*let temp = parseFloat(numberArr.join(''));
+  console.log(temp);
+  numberArr.push(temp);
+a= parseFloat(numberArr.join('')); 
+  history = a + "+";
+  op = "+"; 
+  numberArr = [];*/

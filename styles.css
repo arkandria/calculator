@@ -2,6 +2,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-grow:1;
 }
 div {
     display: flex;
@@ -10,7 +11,7 @@ div {
 }
 .container {
     background-color: rgb(70, 70, 70);
-    height: 550px;
+    height: auto;
     width: 500px;
     margin-top: 100px;
     flex-direction: column;
@@ -18,17 +19,20 @@ div {
     justify-content: center;
     border-radius: 10px;
     box-shadow: 10px 10px 5px rgb(169, 182, 187);
+    
 }
 .display {
     margin-top: 20px;
     background-color: rgb(161, 196, 184);
-    height: 100px;
+    height: auto;
     width: 460px;
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
     border-radius: 10px;
-    
+    flex-grow: 1;
+    flex-wrap: wrap;
+    word-wrap: break-word;
 }
 .btn {
     background-color: rgb(97, 95, 95);
@@ -46,7 +50,8 @@ div {
 #equals:hover {
     background-color: rgb(62, 202, 179);
 }
-#c:hover {
+#c:hover,
+#ac:hover {
     background-color: rgb(202, 62, 81);
 }
 
@@ -54,6 +59,7 @@ div {
 
 .btnCard {
     margin-top: 20px;
+    margin-bottom: 20px;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -75,4 +81,6 @@ div {
     margin-left: 15px;
     color: rgb(24, 24, 24);
     font-family: 'Share Tech Mono', monospace;
+    flex-wrap: wrap; 
+    word-wrap: break-word;
 }
