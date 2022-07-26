@@ -1,7 +1,9 @@
-let total = 3;
-let a;
-let b;
+let total = 0;
+let a = null;
+let b= null;
+let op=null;
 let operations=[];
+
 
 
 const add = (a,b) => {
@@ -19,6 +21,7 @@ const mult = (a,b) => {
     return total;
 }
 
+
 const divide = (a,b) => {
     total = a / b;
     return total;
@@ -26,20 +29,21 @@ const divide = (a,b) => {
 
 const operate = (a, operator, b) => {
     switch (operator) {
-      case "+":  
+      case " + ":  
         return add(a,b);
         break;
-      case "-":
+      case " - ":
         return substract(a,b);
         break;
-      case "x":
+      case " x ":
         return mult(a,b);
         break;
-      case "÷":
+      case " ÷ ":
         return divide(a,b)
       break;
     }
 };
+
 
 let numberArr = [];
 let histArray = [];
@@ -49,91 +53,98 @@ let dotCounter=0;
 
 const totalDisplay = document.querySelector(".total")
 
+insertN = (n) => {
+  numberArr.push(n);
+  totalDisplay.textContent = numberArr.join('');
+};
+insertDot = () => {
+  if (dotCounter===0){
+    numberArr.push(".");
+    totalDisplay.textContent = numberArr.join('');
+    dotCounter++;
+}
+};
+deleteAll = () => {
+  numberArr = [] ;
+  operations = [] ;
+  totalDisplay.textContent = 0;
+};
+deleteOne = () => {
+  numberArr.pop();
+  if (numberArr.length===0){
+  numberArr.push(0)};
+  totalDisplay.textContent = numberArr.join('');
+};
 
 
 const one = document.querySelector("#one");
 one.addEventListener ('click', () => {
-  numberArr.push(1);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(1);
 });
+
 const two = document.querySelector("#two");
 two.addEventListener ('click', () => {
-  numberArr.push(2);
-  console.log(numberArr);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(2);
 });
 const three = document.querySelector("#three");
 three.addEventListener ('click', () => {
-  numberArr.push(3);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(3);
 });
 const four = document.querySelector("#four");
 four.addEventListener ('click', () => {
-  numberArr.push(4);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(4);
 });
 const five = document.querySelector("#five");
 five.addEventListener ('click', () => {
-  numberArr.push(5);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(5);
 });
 const six = document.querySelector("#six");
 six.addEventListener ('click', () => {
-  numberArr.push(6);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(6);
 });
 const seven = document.querySelector("#seven");
 seven.addEventListener ('click', () => {
-  numberArr.push(7);
-  console.log(numberArr);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(7);
 });
 const eight = document.querySelector("#eight");
 eight.addEventListener ('click', () => {
-  numberArr.push(8);
-  console.log(numberArr);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(8);
 });
 const nine = document.querySelector("#nine");
 nine.addEventListener ('click', () => {
-  numberArr.push(9);
-  totalDisplay.textContent = numberArr.join('');
+  insertN(9);
 });
 const zero = document.querySelector("#zero");
 zero.addEventListener ('click', () => {
-  numberArr.push(0);
-  totalDisplay.textContent = numberArr.join('');
+  
+  if (!((numberArr.length===0)|| (numberArr[numberArr.length-1]==' + '||numberArr[numberArr.length-1]==' - ' ||numberArr[numberArr.length-1]==' x ' ||numberArr[numberArr.length-1]==' ÷ '))) {
+    insertN(0);
+  } 
+  
 });
 const dot = document.querySelector("#dot");
 dot.addEventListener ('click', () => {
-  if (dotCounter===0){
-    numberArr.push(".");
-    totalDisplay.textContent = numberArr.join('');
-    dotCounter = 1;
-  };
-});
-
-const c = document.querySelector("#c");
-c.addEventListener ('click', () => {
-  numberArr = [] ;
-  totalDisplay.textContent = 0;
+  insertDot();
 });
 
 const ac = document.querySelector("#ac");
 ac.addEventListener ('click', () => {
-  numberArr = [] ;
-  totalDisplay.textContent = 0;
+  deleteAll();
+});
+
+const c = document.querySelector("#c");
+c.addEventListener ('click', () => {
+  deleteAll();
 });
 
 const del = document.querySelector("#del");
 del.addEventListener ('click', () => {
-  numberArr.pop();
-  totalDisplay.textContent = numberArr.join(' ');
+  deleteOne();
 });
 
 const plus = document.querySelector("#add");
 plus.addEventListener ('click', () => {
-  console.log(numberArr[numberArr.length-1]);
+  
   if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
     numberArr.pop();
   }
@@ -173,21 +184,78 @@ division.addEventListener ('click', () => {
 
 const equals = document.querySelector("#equals");
 equals.addEventListener ('click', () => {
-  if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
-    numberArr.pop();
+    
+    a = null;
+    b = null;
+    op = null;
+    operations =[];
+    if (numberArr[numberArr.length-1]=== "+" || numberArr[numberArr.length-1]=== "-" || numberArr[numberArr.length-1]=== "x" || numberArr[numberArr.length-1]==="÷") {
+      numberArr.pop();
+    };
+  let temp = []; 
+  numberArr.push(" = ");
+  for (i=0; i<numberArr.length; i++) {
+    if (typeof numberArr[i]==='number') {
+      temp.push(numberArr[i]);
+    } else {
+      operations.push(parseFloat(temp.join(''))),
+      temp = [];
+      operations.push(numberArr[i]);
+    }
+  }
+  
+  //console.log(operations);
+  
+  if (Number.isNaN(operations[0])) {
+    operations.shift();
+    
+  };
+  
+  if (operations[0]== ' - ' || operations[0]===' + '|| operations[0]==' x '|| operations[0]===' ÷ ') {
+    
+    operations.unshift(total);
+    
   };
 
+  for (i=0; i<operations.length; i++) {
    
-
+    if (i===0 && typeof operations[i]==='number') {
+      a = operations[i];
+      
+    } else if (i>1 && typeof operations[i]==='number') {
+     
+      b = operations[i];
+      
+      
+    } else if (i>0 && (operations[i]===' + '|| operations[i]===' - '|| operations[i]==' x '|| operations[i]===' ÷ ')) {
+      if (op== null){
+        op= operations[i];
+      
+        
+      } else   {
+        
+        total = operate(a,op,b);
+        
+        a= total;
+        
+        b= null;
+        op=operations[i];
+        
+      }
+    
+      
+    } else if (operations[i]===' = ') {
+      if (!(op== null && b== null)){
+        
+        total = operate(a,op,b);
+        totalDisplay.textContent = total;
+        b= null;
+        op=null;
+        operations = [];
+        numberArr = [];
+        numberArr.push(total);
+      }      
+    } 
+  };
 });
 
-
-
-//code for equals()
-/*let temp = parseFloat(numberArr.join(''));
-  console.log(temp);
-  numberArr.push(temp);
-a= parseFloat(numberArr.join('')); 
-  history = a + "+";
-  op = "+"; 
-  numberArr = [];*/

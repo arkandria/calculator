@@ -54,7 +54,12 @@ div {
 #ac:hover {
     background-color: rgb(202, 62, 81);
 }
-
+#divide:hover,
+#mult:hover,
+#add:hover,
+#subs:hover{
+    background-color: rgb(119, 123, 177);
+}
     
 
 .btnCard {
